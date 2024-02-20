@@ -1,0 +1,230 @@
+* {
+    padding: 0%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+}
+
+.group {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+}
+
+.left {
+    height: 100vh;
+    width: 60%;
+    overflow: hidden;
+    background: rgb(54, 71, 139);
+    background: linear-gradient(-220deg, rgba(159, 153, 163, 1) 0%, rgba(54, 71, 139, 1) 100%);
+}
+
+.right {
+    height: 100vh;
+    background-color: #132432;
+    width: 40%;
+    overflow: hidden;
+}
+
+.title {
+    font-size: 65px;
+    padding: 50px;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #DAB6C2;
+}
+
+.image-grid {
+    margin: 25px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.row {
+    margin: 0px 30px 0px 30px;
+}
+
+.box {
+    border: 2px solid;
+    border-radius: 10px;
+    width: 200px;
+    height: 120px;
+    background-color: #132432;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 1s, transform 2s;
+    cursor: pointer;
+}
+
+
+.box:hover {
+    scale: 1.1;
+}
+
+.small-box {
+    width: 180px;
+    height: 100px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    background: url('/iMAGES/HomePage.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.box2 {
+    background: url('/iMAGES/dcrust.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.description {
+    padding: 10px;
+    text-align: center;
+    display: inline;
+}
+
+.description h3 {
+    padding-bottom: 4px;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+a.middle {
+    position: relative;
+}
+
+a.middle:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+}
+
+a.middle:hover:before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+.description p {
+    opacity: 0.6;
+    word-wrap: break-word;
+}
+
+.form {
+    padding: 10px;
+    margin: 40px;
+}
+
+input {
+    width: 100%;
+    padding: 12px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+
+}
+
+input:focus {
+    background-color: lightblue;
+    border-radius: 25px;
+}
+
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+select:focus input[type="submit"] {
+    width: 70px;
+    background: linear-gradient(90deg, rgba(67, 81, 142, 1) 0%, rgba(0, 212, 255, 0.45702030812324934) 100%);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+input[type="submit"] {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+input[type="submit"]:hover {
+    background-color: rgb(118, 16, 213);
+    border-radius: 10px;
+    color: #FFF;
+    font-weight: bold;
+    transition: all 1s, transform 1s;
+}
+
+input[type="submit"]::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+    transform: scale(1);
+}
+
+.title1 {
+    font-size: 30px;
+    color: #5E17EB;
+    text-align: center;
+    padding-bottom: 5px;
+    padding-top: 100px;
+}
+
+.already {
+    font: 24p;
+    text-align: center;
+    color: #FFF;
+    font-weight: bold;
+    transition: all 1s;
+}
+
+.already a:hover {
+    text-decoration: none;
+    color: red;
+    border-bottom: 1px solid red;
+    padding: 5px;
+}
+
+.social-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.icon {
+    margin: 10px;
+    color: #FFF;
+    font-size: 30px;
+    transition: all 1s, transform 1s;
+}
+
+.icon a:hover {
+    color: lightblue;
+
+}
